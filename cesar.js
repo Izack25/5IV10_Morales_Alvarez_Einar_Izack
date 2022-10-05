@@ -1,64 +1,71 @@
 var cesar = cesar || (function(){
-  
-    var doStaff = function(txt, desp, action){
+    var proceso = function(txt, desp, action){
         var replace = (function(){
-            //mi abecedario
-            var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
-                        'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 
-                    's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-            var l = abc.length;
+        //primero necesito una matriz del abc
+        var abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+        var l = abc.length;
+        
 
+        /* necesitamos una funcion que pueda obtener la posicion que va  avenir por parte de la clave privada o desplazamiento */
+
+        return function(c){
             
-            return function(c){
-                var i = abc.indexOf(c.toLowerCase());
-                
-                if(i != -1){
-                    var pos = i;
-                    if(action){
-                        
-                        pos += desp;
-                        pos -= (pos>=1)?1:0;
-                    }else{
-                        
-                        pos -= desp;
-                        pos += (pos < 0)?1:0;
-                    }
-                    return abc[pos];
-                }
-                return c;
-            };
-        })();
+            //necesitamos saber la posicion 
+            var i = abc.indexOf(c.toLowerCase());
 
-        //aqui es donde tenemos que hacer el match
-        var re = (/([a-z])/ig);
-        return String(txt).replace(re, function(match){
-            return replace(match);
-        });
+            /* Necesitamos saber donde estamos dentro de la matriz abc y como la vamos a recorrer para el momento del cifrado */
+            if(i != -1){
+                //primero obtenemos la poscion para el desp
+                var pos = i;
+                //necesito saber la operacion a realizar c o d
+                if(action){
+                    //cifrar hacia adelante
+                    pos+=desp;
+                    //definir como se va a mover
+                    pos -= (pos >= l)?1:0;
+                }else{
+                    //descifra para atras
+                    pos-=desp;
+                    //movimiento
+                    pos += (pos < 0)?1:0;
+                }
+                return abc[pos];
+            }
+            return c;
+        };
+    })();
+    //tenemos que saber que el texto este acorde abc
+
+    var re = (/([a-z])/ig);
+
+    //una funcion que se encargue del intercambio de las posciones acorde a si coincide el texto a cifrar con la expresion regular
+
+    return String(txt).replace(re, function(match){
+        return replace(match);
+    });
+
     };
-    
+
     return{
         encode : function(txt, desp){
-            return doStaff(txt, desp, true);
+            return proceso(txt, desp, true);
         },
-
         decode : function(txt, desp){
-            return doStaff(txt, desp, false);
+            return proceso(txt, desp, false);
         }
     };
+
 })();
 
-//realizar una funcion que se encargue de codificar y decodificar
-
 function codificar(){
+    let frase = (document.getElementById("frase").value);
+    let x = parseInt(document.getElementById("valor").value);
+    document.getElementById("final").innerHTML = cesar.encode(frase,x);
     
-    document.getElementById("resultado").innerHTML = cesar.encode(
-        document.getElementById("cadena").value, 3);
-
 }
-
 function decodificar(){
+    let frase = (document.getElementById("frase").value);
+    let x = parseInt(document.getElementById("valor").value);
+    document.getElementById("final").innerHTML = cesar.decode(frase,x);
     
-    document.getElementById("resultado").innerHTML = cesar.decode(
-        document.getElementById("cadena").value, 3);
-
 }

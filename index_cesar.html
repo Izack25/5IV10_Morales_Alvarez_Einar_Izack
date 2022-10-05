@@ -4,15 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cifrado Cesar</title>
+    
+    <script src="cesar.js"></script>
 </head>
 <body>
+    <div class="div1">
+        <p>ESCRIBE LA FRASE</p>
+        <input type="text" id="frase">
+
+        <br>
+
+        <p>CUANTAS VECES QUIERES DESPLAZAR</p>
+        <input type="number" id="valor">
+
+        <br>
+
+        <button type="submit" onclick="codificar();" class="do">Cifrar</button>
+
+        <button type="submit" onclick="decodificar();" class="do">Descifrar</button>
+    </div>
+    
+        
    
-    <textarea id="cadena" ></textarea>
 
-    <p><input type="button" value="codificar" onclick="codificar()" >
-    <input type="button" value="decodificar" onclick="decodificar()" > </p>
+    <h1 id="final">AQUÍ SALE TU MENSAJITO DESCIFRADO O CIFRADO </h1>  
+    <div class="div2">
 
-    <div id="resultado" ></div> 
-    <script src="cesar.js" ></script>
+      
+
+    </div>
+
+    
+
+    
 </body>
 </html>
