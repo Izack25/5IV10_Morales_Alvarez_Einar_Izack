@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+    <link rel="stylesheet" href="css.css">
+
+
+        
+
+        <title>AES_CIFRADO</title>
+
+    </head>
+    <body>
+        <center><div class="container">
+            <br>
+            <br> 
+            <div>ESCRIBE TU CLAVE
+            <input type="text" id="Key" placeholder=""/>
+            </div>
+            <br>
+            <br>
+            <p class="text">ELIGE TU ARCHIVO (.TXT)</p>
+            <input type="file" id="file" value="seleccione su archivo"/>
+            <br>
+            <br>
+            <br>
+            <input type="radio" id="128bits" name="bits"  value="128"/>
+            <label for="bits">128</label>
+
+
+            <input type="radio" id="192bits" name="bits" value="192"/>
+            <label for="bits">192</label>
+
+            
+            <input type="radio" id="256bits" name="bits" value="256"/>
+            <label for="bits">256</label>
+            
+                
+                <br>
+                <br>
+                <br>
+
+                
+
+                <input class="cifrar" type="button" id="cifrar" value="cifrar" onclick="cifrado()"/>
+                <br>
+
+                <script src="cifrado_aes.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/aes.min.js"></script>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        </div></center>
+    </body>
+</html>
